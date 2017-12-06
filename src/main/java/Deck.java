@@ -3,14 +3,13 @@ import java.util.Collections;
 
 public class Deck {
     ArrayList<Card> allCards;
-    SuitType[] suits = SuitType.values();
-    ValueType[] values = ValueType.values();
+
 
     public Deck(){
         this.allCards = new ArrayList<>();
 
-        for (SuitType suit : suits) {
-            for (ValueType value : values) {
+        for (SuitType suit : SuitType.values()) {
+            for (ValueType value : ValueType.values()) {
                 Card card = new Card(suit, value);
                 this.allCards.add(card);
             }
@@ -29,8 +28,18 @@ public class Deck {
         Collections.shuffle(allCards);
     }
 
-    public Hand deal() {
+    public Card dealCard(){
+        return allCards.remove(0);
+    }
+
+    public Hand deal(int number) {
         this.shuffle();
-        
+        int i = 0;
+        Hand hand_dealt = new Hand();
+        while (i < number) {
+            hand_dealt.addCard(this.dealCard());
+            i++;
+        }
+        return hand_dealt;
     }
 }
