@@ -19,4 +19,8 @@ public class CardTest {
         assertEquals(SuitType.CLUBS, card1.getSuit());
     }
 
+    @Test
+    public void canGetNumericValue(){
+        assertEquals(10, card2.getNumericalValue());
+    }
 }
